@@ -24,7 +24,6 @@ def loadBook(filename):
         if len(each)>0:
             eachword=each.split()
             book.append(eachword)
-        #print(eachword)
     #print(book)
     return book
 
@@ -36,7 +35,12 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
+    length=0
+    for row in corpus:
+        for col in row:
+            length=length+1
+    #print(length)
+    return length
 
 
 '''
@@ -298,7 +302,8 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # test.runWeek1()
-    test.testLoadBook()
+    #test.testLoadBook()
+    test.testGetCorpusLength()
 
     ## Uncomment these for Week 2 ##
 """
