@@ -24,6 +24,7 @@ def loadBook(filename):
         if len(each)>0:
             eachword=each.split()
             book.append(eachword)
+        #print(eachword)
     #print(book)
     return book
 
