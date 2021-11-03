@@ -173,12 +173,16 @@ def buildBigramProbs(unigramCounts, bigramCounts):
         words=[]
         probsoflist=[]
         for keys,values in bigramCounts[prevWord].items():
+            #print(bigramCounts)
             words.append(keys)
             probsoflist.append(values/unigramCounts[prevWord])
             tempdict={}
             tempdict["words"]=words
+            #print(words)
+            #print(tempdict)
             tempdict["probs"]=probsoflist
         dictionary[prevWord]=tempdict
+        #print(dictionary)
     return dictionary
 
 
@@ -189,6 +193,18 @@ Parameters: int ; list of strs ; list of floats ; list of strs
 Returns: dict mapping strs to floats
 '''
 def getTopWords(count, words, probs, ignoreList):
+    highwordProb= { }
+    Top_words = { }
+    for i in range(len(words)):
+        if words[i] not in ignoreList:
+           highwordProb[words[i]] = probs[i]
+    sorted_list = sorted(highwordProb, key=highwordProb.get, reverse=True)
+    for sort_words in sorted_list:
+        if len(Top_words)<count:
+           Top_words[sort_words]= highwordProb[sort_words]
+    return Top_words
+
+
     return
 
 
@@ -375,7 +391,8 @@ if __name__ == "__main__":
     #print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     #test.runWeek2()
     #test.testBuildUnigramProbs()
-    test.testBuildBigramProbs()
+    #test.testBuildBigramProbs()
+    test.testGetTopWords()
 
 
 
