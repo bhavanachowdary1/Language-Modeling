@@ -316,7 +316,35 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    return
+    finaldict={}
+    corpusprob1=[]
+    corpusprob2=[]
+    unigram1=buildVocabulary(corpus1)
+    unicount1=countUnigrams(corpus1)
+    length1=getCorpusLength(corpus1)
+    prob1=buildUnigramProbs(unigram1,unicount1,length1)
+    topwords1=getTopWords(topWordCount,unigram1,prob1,ignore)
+    unigram2=buildVocabulary(corpus2)
+    unicount2=countUnigrams(corpus2)
+    length2=getCorpusLength(corpus2)
+    prob2=buildUnigramProbs(unigram2,unicount2,length2)
+    topwords2=getTopWords(topWordCount,unigram2,prob2,ignore)
+    lst=list(topwords1.keys())+list(topwords2.keys())
+    twords=list(dict.fromkeys(lst))
+    for i in range(len(twords)):
+        if twords[i] in unigram1:
+            y=unigram1.index(twords[i])
+            corpusprob1.append(prob1[y])
+        else:
+            corpusprob1.append(0)
+        if twords[i] in unigram2:
+            y=unigram2.index(twords[i])
+            corpusprob2.append(prob2[y])
+    finaldict["topWords"]=twords
+    finaldict["corpus1Probs"]=corpusprob1
+    finaldict["corpus2Probs"]=corpusprob2
+    return finaldict
+    
 
 
 '''
@@ -326,6 +354,8 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    dictionary1=setupChartData(corpus1,corpus2,numWords)
+    sideBySideBarPlots(dictionary1["topWords"],dictionary1["corpus1Probs"],dictionary1["corpus2Probs"],name1,name2,title)
     return
 
 
@@ -336,7 +366,10 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
+    dictionary1=setupChartData(corpus1,corpus2,numWords)
+    scatterPlot(dictionary1["corpus1Probs"],dictionary1["corpus2Probs"],dictionary1["topWords"],title)
     return
+
 
 
 ### WEEK 3 PROVIDED CODE ###
