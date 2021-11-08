@@ -141,7 +141,7 @@ def buildUniformProbs(unigrams):
     for eachword in unigrams:
         prob=1/len(unigrams)
         uniformprob.append(prob)
-    print(uniformprob)
+    #print(uniformprob)
     return uniformprob
 
 
@@ -152,7 +152,13 @@ Parameters: list of strs ; dict mapping strs to ints ; int
 Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
-    return
+    unigram_prob=[]
+    for i in unigrams:
+        countofword=unigramCounts[i]
+        prob=countofword/totalCount
+        #print(totalCount)
+        unigram_prob.append(prob)
+    return unigram_prob
 
 
 '''
@@ -349,15 +355,18 @@ if __name__ == "__main__":
     #test.testGetStartWords()
     #test. testCountStartWords()
     #test.testCountBigrams()
-    test.testBuildUniformProbs()
+    #test.testBuildUniformProbs()
 
     ## Uncomment these for Week 2 ##
-"""
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek2()
-"""
+
+    #print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    #test.week2Tests()
+    #print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    #test.runWeek2()
+    test.testBuildUnigramProbs()
+
+
+
 
     ## Uncomment these for Week 3 ##
 """
