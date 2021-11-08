@@ -205,7 +205,7 @@ def getTopWords(count, words, probs, ignoreList):
     return Top_words
 
 
-    return
+
 
 
 '''
@@ -217,10 +217,9 @@ Returns: str
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
     sentence=""
-    import random
     for i in range(count):
         #print(count)
-        randomList = random.choices(words,weights=probs)
+        randomList = choices(words,weights=probs)
         #print("The random list is  :  ", randomList)
         sentence= sentence + randomList[0]+" "
     #print("sen is :::::",len(sentence))
@@ -236,26 +235,22 @@ Returns: str
 '''
 def generateTextFromBigrams(count, startWords, startWordProbs, bigramProbs):
     sentence=""
-    import random
-    z= random.choices(startWords,weights=startWordProbs)[0]
+    z= choices(startWords,weights=startWordProbs)[0]
     sentence = sentence + z
     for i in range(count-1):
         if (z!="."):
                 x=bigramProbs[z]['words']
                 y=bigramProbs[z]['probs']
-                z = random.choices(x,weights=y)[0]  
+                z = choices(x,weights=y)[0]  
                 sentence+=" " +z
                 #print("random choices    :::: ",z)
                 #print("sentence ::::::::::::", sentence)
         else:
-            z= random.choices(startWords,weights=startWordProbs)[0]
+            z= choices(startWords,weights=startWordProbs)[0]
             sentence = sentence + " " + z
             #print("sentence  ::::::::::::" sentence)
     return sentence
 
-
-
-    return
 
 
 ### WEEK 3 ###
@@ -272,6 +267,8 @@ Parameters: 2D list of strs
 Returns: None
 '''
 def graphTop50Words(corpus):
+
+
     return
 
 
@@ -423,11 +420,10 @@ if __name__ == "__main__":
     #test.testBuildBigramProbs()
     #test.testGetTopWords()
     #test.testGenerateTextFromUnigrams()
-    test.testGenerateTextFromBigrams()
+    #test.testGenerateTextFromBigrams()
 
 
     ## Uncomment these for Week 3 ##
-"""
+
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     test.runWeek3()
-"""
