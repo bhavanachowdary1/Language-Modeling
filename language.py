@@ -216,7 +216,16 @@ Returns: str
 '''
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
-    return
+    sentence=""
+    import random
+    for i in range(count):
+        #print(count)
+        randomList = random.choices(words,weights=probs)
+        #print("The random list is  :  ", randomList)
+        sentence= sentence + randomList[0]+" "
+    #print("sen is :::::",len(sentence))
+    #print(sentence)
+    return sentence
 
 
 '''
@@ -226,6 +235,7 @@ Parameters: int ; list of strs ; list of floats ; dict mapping strs to (dicts ma
 Returns: str
 '''
 def generateTextFromBigrams(count, startWords, startWordProbs, bigramProbs):
+    
     return
 
 
@@ -392,8 +402,8 @@ if __name__ == "__main__":
     #test.runWeek2()
     #test.testBuildUnigramProbs()
     #test.testBuildBigramProbs()
-    test.testGetTopWords()
-
+    #test.testGetTopWords()
+    test.testGenerateTextFromUnigrams()
 
 
     ## Uncomment these for Week 3 ##
