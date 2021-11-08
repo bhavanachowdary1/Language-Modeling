@@ -301,7 +301,12 @@ Parameters: 2D list of strs ; str
 Returns: None
 '''
 def graphTopNextWords(corpus, word):
-    return
+    unigramcounts=countUnigrams(corpus)
+    bigramcounts=countBigrams(corpus)
+    bigramprobs=buildBigramProbs(unigramcounts,bigramcounts)
+    count=getTopWords(10,bigramprobs[word]["words"],bigramprobs[word]["probs"],ignore)
+    plot=barPlot(count,"Top Next Words")
+    return plot
 
 
 '''
